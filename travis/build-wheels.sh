@@ -1,11 +1,8 @@
 #!/bin/bash
 set -e -x
 
-# Manylinux, openblas version, lex_ver
-source /io/common_vars.sh
-
 # Directory to store wheels
-rm_mkdir unfixed_wheels
+mkdir unfixed_wheels
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
