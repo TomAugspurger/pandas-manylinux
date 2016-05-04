@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e -x
 
 # Manylinux, openblas version, lex_ver
 source /io/common_vars.sh
