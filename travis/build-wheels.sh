@@ -3,6 +3,11 @@ set -e -x
 
 # Directory to store wheels
 mkdir unfixed_wheels
+mkdir wheelhouse
+
+git clone https://github.com/pydata/pandas /io/pandas
+cd /io/pandas
+git checkout v0.18.1
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
