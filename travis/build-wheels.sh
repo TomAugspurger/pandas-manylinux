@@ -7,8 +7,8 @@ mkdir unfixed_wheels
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     if [[ ${PYBIN} != *"26"* ]] && [[ ${PYBIN} != *"33"* ]]; then
-        ${PYBIN}/pip install -r /io/dev-requirements.txt
-        ${PYBIN}/pip wheel /io/ -w wheelhouse/
+        ${PYBIN}/pip install -r /io/pandas/ci/requirements_dev.txt
+        ${PYBIN}/pip wheel /io/pandas/ -w wheelhouse/
     else
         echo "skipping ${PYBIN}"
     fi
