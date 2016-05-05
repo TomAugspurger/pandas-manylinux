@@ -15,12 +15,18 @@ for PYBIN in /opt/python/*/bin; do
 done
 
 
-for whl in wheelhouse/*.whl; do
-    auditwheel repair $whl -w /io/wheelhouse/
+for whl in wheelhouse/pandas*.whl; do
+    if [[ ${whl} == *"pandas"* ]]; then
+        auditwheel repair $whl -w /io/wheelhouse/
+    fi
 done
 
 for PYBIN in /opt/python/*/bin/; do
-    ${PYBIN}/pip install pandas --no-index -f /io/wheelhouse
-    (cd $HOME; ${PYBIN}/nosetests pandas)
+    if [[ ${PYBIN} != *"26"* ]] && [[ ${PYBIN} != *"33"* ]]; then
+         ${PYBIN}/pip install pandas --no-index -f /io/wheelhouse
+        (cd $HOME; ${PYBIN}/nosetests pandas)
+    else
+        echo "skipping ${PYBIN}"
+    fi
 done
 
