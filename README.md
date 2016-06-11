@@ -1,6 +1,11 @@
-manylinux wheel builder for pandas
+# Pandas manylinux
 
-To use.
+
+Wheel builder for pandas.
+The build was timing out on Travis, so we're doing this on a local
+docker engine.
+
+To use, run `./build.sh`, which just does
 
 ```bash
 docker build -t pandas-ml .
