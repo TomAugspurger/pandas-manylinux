@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e -x
 
+echo ${PYVER}
+
 git clone https://github.com/pydata/pandas /io/pandas
 cd /io/pandas
 git checkout v0.18.1
 
-set PYBIN=/opt/python/${PYVER}/bin
+PYBIN=/opt/python/${PYVER}/bin
 # Compile wheels
 echo "building for ${PYBIN}"
 ${PYBIN}/pip install -r /io/pandas/ci/requirements_dev.txt
