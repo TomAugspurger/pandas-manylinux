@@ -8,17 +8,15 @@ services:
   - docker
 
 env:
-  # - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64 PYVER=cp34-cp34m
-  # - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64 PYVER=cp35-cp35m
-  # - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686 PYVER=cp34-cp34m PRE_CMD=linux32
-  # - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686 PYVER=cp35-cp35m PRE_CMD=linux32
-  - FOO=foo BAR=bar
-  - FOO=bar BAR=foo
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64 PYVER=cp34-cp34m
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64 PYVER=cp35-cp35m
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686 PYVER=cp34-cp34m PRE_CMD=linux32
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686 PYVER=cp35-cp35m PRE_CMD=linux32
 
-# install:
-#   - docker pull $DOCKER_IMAGE
+install:
+  - docker pull $DOCKER_IMAGE
 
 script:
-  sh foo.sh
-  # - docker run --rm -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build-wheels.sh
-  # - ls wheelhouse/
+  - export PYVER=$PYVER
+  - docker run -e "PYVER=$PYVER" --rm -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build-wheels.sh
+  - ls wheelhouse/
