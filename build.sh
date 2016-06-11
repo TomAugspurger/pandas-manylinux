@@ -1,0 +1,6 @@
+#!/bin/bash
+docker build -t pandas-ml .
+docker create --name build-container pandas-ml
+docker start build-container
+docker logs -f build-container
+docker cp build-container:/wheelhouse .
